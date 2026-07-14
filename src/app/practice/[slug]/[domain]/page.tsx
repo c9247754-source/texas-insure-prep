@@ -25,8 +25,11 @@ function isDomain(value: string): value is QuestionDomain {
 }
 
 export async function generateStaticParams() {
-  return ["tx-life-health", "tx-property-casualty"].flatMap((slug) =>
-    DOMAINS.map((domain) => ({ slug, domain })),
+  const slugs = ["tx-life-health", "tx-property-casualty"] as const;
+  return slugs.flatMap((slug) =>
+    DOMAINS.filter((domain) => getQuestionsByDomain(slug, domain).length > 0).map(
+      (domain) => ({ slug, domain }),
+    ),
   );
 }
 

@@ -41,6 +41,7 @@ export default async function TopicsPage({ params }: Props) {
       <div className="mt-10 grid gap-4">
         {domains.map((domain) => {
           const count = getQuestionsByDomain(slug, domain).length;
+          if (count === 0) return null;
           return (
             <div
               key={domain}
