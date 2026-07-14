@@ -108,19 +108,28 @@ export default async function PricingPage({
       </div>
 
       <section className="mt-12 border border-[var(--line)] bg-[var(--paper-deep)] p-6 text-sm text-[var(--ink-muted)]">
-        <p className="font-medium text-[var(--ink)]">How payments work</p>
+        <p className="font-medium text-[var(--ink)]">How payments work (Creem)</p>
         <ol className="mt-2 list-decimal space-y-1 pl-5">
           <li>
-            Connect Stripe keys in <code>.env.local</code> (see{" "}
-            <code>.env.example</code>).
+            Create two one-time products in{" "}
+            <a
+              href="https://www.creem.io/"
+              className="underline underline-offset-2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Creem
+            </a>{" "}
+            ($12.99 unlock + $9.99 PDF).
           </li>
           <li>
-            Until Stripe is connected, checkout opens a local demo unlock so you
-            can test the funnel.
+            Set <code>CREEM_API_KEY</code>, <code>CREEM_PRODUCT_UNLOCK</code>,{" "}
+            <code>CREEM_PRODUCT_PDF</code>, and{" "}
+            <code>NEXT_PUBLIC_APP_URL</code> (see <code>.env.example</code>).
           </li>
           <li>
-            After payment, we set a browser access cookie (lifetime for unlock /
-            PDF).
+            Until Creem is connected, Buy opens a local demo unlock so you can
+            test the funnel.
           </li>
         </ol>
       </section>

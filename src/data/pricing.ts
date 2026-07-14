@@ -4,10 +4,12 @@ export type Product = {
   id: ProductId;
   name: string;
   priceLabel: string;
-  /** Amount in USD cents for Stripe price_data */
+  /** Display amount in USD cents */
   amountCents: number;
   blurb: string;
   features: string[];
+  /** Env var holding Creem product id (prod_...) */
+  creemEnvKey: "CREEM_PRODUCT_UNLOCK" | "CREEM_PRODUCT_PDF";
 };
 
 export const FREE_PRACTICE_LIMIT = 20;
@@ -27,6 +29,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
       "Instant explanations + score review",
       "Texas law topic coverage unlocked",
     ],
+    creemEnvKey: "CREEM_PRODUCT_UNLOCK",
   },
   pdf: {
     id: "pdf",
@@ -40,7 +43,28 @@ export const PRODUCTS: Record<ProductId, Product> = {
       "High-yield ethics & unfair trade snaps",
       "Printable page — study offline",
     ],
+    creemEnvKey: "CREEM_PRODUCT_PDF",
   },
 };
 
 export const ACCESS_COOKIE = "tip_access";
+
+export function getCreemProductId(productId: ProductId): string | undefined {
+  const key = PRODUCTS[productId].creemEnvKey;
+  const value = process.env[key]?.trim();
+  return value || undefined;
+}
+
+export function resolveProductFromCreemId(
+  creemProductId: string | null | undefined,
+  requestId?: string | null,
+): ProductId | null {
+  if (requestId === "unlock" || requestId === "pdf") return requestId;
+  if (!creemProductId) return null;
+  for (const product of Object.values(PRODUCTS)) {
+    if (process.env[product.creemEnvKey]?.trim() === creemProductId) {
+      return product.id;
+    }
+  }
+  return null;
+}

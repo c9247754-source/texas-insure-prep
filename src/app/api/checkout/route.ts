@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
-import { PRODUCTS, type ProductId } from "@/data/pricing";
-import { appBaseUrl, getStripe } from "@/lib/stripe";
+import {
+  PRODUCTS,
+  getCreemProductId,
+  type ProductId,
+} from "@/data/pricing";
+import { appBaseUrl, isCreemConfigured } from "@/lib/app-url";
+import { getCreem } from "@/lib/creem";
 
 export async function POST(request: Request) {
   const body = (await request.json().catch(() => null)) as {
@@ -12,46 +17,52 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid product" }, { status: 400 });
   }
 
-  const product = PRODUCTS[productId];
-  const stripe = getStripe();
-
-  // Dev / pre-Stripe fallback: grant via demo unlock page
-  if (!stripe) {
+  // No Creem keys yet → local demo unlock so funnel can be tested
+  if (!isCreemConfigured()) {
     return NextResponse.json({
       mode: "demo",
       url: `${appBaseUrl()}/unlock/demo?product=${productId}`,
     });
   }
 
-  const session = await stripe.checkout.sessions.create({
-    mode: "payment",
-    payment_method_types: ["card"],
-    line_items: [
-      {
-        quantity: 1,
-        price_data: {
-          currency: "usd",
-          unit_amount: product.amountCents,
-          product_data: {
-            name: product.name,
-            description: product.blurb,
-          },
-        },
-      },
-    ],
-    success_url: `${appBaseUrl()}/unlock/success?session_id={CHECKOUT_SESSION_ID}&product=${productId}`,
-    cancel_url: `${appBaseUrl()}/pricing?canceled=1`,
-    metadata: {
-      productId,
-    },
-  });
-
-  if (!session.url) {
+  const creemProductId = getCreemProductId(productId);
+  if (!creemProductId) {
     return NextResponse.json(
-      { error: "Could not create checkout session" },
+      {
+        error: `Missing Creem product id. Set ${PRODUCTS[productId].creemEnvKey} in env.`,
+      },
       { status: 500 },
     );
   }
 
-  return NextResponse.json({ mode: "stripe", url: session.url });
+  const creem = getCreem();
+  if (!creem) {
+    return NextResponse.json({ error: "Creem not configured" }, { status: 500 });
+  }
+
+  try {
+    const checkout = await creem.checkouts.create({
+      productId: creemProductId,
+      requestId: productId,
+      successUrl: `${appBaseUrl()}/unlock/success`,
+      metadata: {
+        tipProduct: productId,
+      },
+    });
+
+    if (!checkout.checkoutUrl) {
+      return NextResponse.json(
+        { error: "Creem did not return a checkout URL" },
+        { status: 500 },
+      );
+    }
+
+    return NextResponse.json({ mode: "creem", url: checkout.checkoutUrl });
+  } catch (error) {
+    console.error("Creem checkout error", error);
+    return NextResponse.json(
+      { error: "Failed to create Creem checkout" },
+      { status: 500 },
+    );
+  }
 }

@@ -7,21 +7,31 @@ import type { ProductId } from "@/data/pricing";
 
 export default function UnlockSuccessClient() {
   const params = useSearchParams();
-  const sessionId = params.get("session_id");
-  const product = (params.get("product") as ProductId | null) ?? "unlock";
   const [status, setStatus] = useState<"loading" | "ok" | "error">("loading");
   const [message, setMessage] = useState("Confirming payment…");
+  const [product, setProduct] = useState<ProductId>("unlock");
 
   useEffect(() => {
     async function grant() {
       try {
+        // Preserve raw query order for Creem signature verification
+        const creemQuery = window.location.search.replace(/^\?/, "");
+        if (!creemQuery.includes("checkout_id") && !creemQuery.includes("signature")) {
+          throw new Error("Missing Creem payment details in the URL");
+        }
+
         const res = await fetch("/api/access/grant", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sessionId, productId: product }),
+          body: JSON.stringify({ creemQuery }),
         });
-        const data = (await res.json()) as { error?: string };
+        const data = (await res.json()) as {
+          error?: string;
+          productId?: ProductId;
+        };
         if (!res.ok) throw new Error(data.error ?? "Grant failed");
+        if (data.productId) setProduct(data.productId);
+        else if (params.get("request_id") === "pdf") setProduct("pdf");
         setStatus("ok");
         setMessage("You’re in. Access unlocked on this browser.");
       } catch (err) {
@@ -30,7 +40,7 @@ export default function UnlockSuccessClient() {
       }
     }
     void grant();
-  }, [sessionId, product]);
+  }, [params]);
 
   return (
     <div className="mx-auto max-w-lg border border-[var(--line)] bg-white p-8 text-center">

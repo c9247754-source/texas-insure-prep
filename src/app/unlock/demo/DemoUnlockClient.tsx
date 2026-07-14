@@ -33,12 +33,12 @@ export default function DemoUnlockClient() {
     <div className="mx-auto max-w-lg border border-[var(--line)] bg-white p-8">
       <p className="eyebrow">Demo mode</p>
       <h1 className="mt-2 font-display text-3xl text-[var(--navy)]">
-        Stripe not connected yet
+        Creem not connected yet
       </h1>
       <p className="mt-3 text-sm leading-relaxed text-[var(--ink-muted)]">
-        No <code>STRIPE_SECRET_KEY</code> found, so we unlocked{" "}
-        <strong>{product}</strong> locally for funnel testing. Add Stripe keys
-        from <code>.env.example</code> when you’re ready for real cards.
+        No <code>CREEM_API_KEY</code> found, so we unlocked{" "}
+        <strong>{product}</strong> locally for funnel testing. Create two
+        products in Creem, then set env vars from <code>.env.example</code>.
       </p>
       {error && <p className="mt-3 text-sm text-[var(--fail)]">{error}</p>}
       {done && (
