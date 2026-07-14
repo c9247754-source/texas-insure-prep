@@ -5,7 +5,7 @@ import { DOMAIN_LABELS, type QuestionDomain } from "@/data/types";
 
 const base =
   process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") ||
-  "https://texas-insure-prep.vercel.app";
+  "https://www.texasinsureprep.com";
 
 const domains = Object.keys(DOMAIN_LABELS) as QuestionDomain[];
 

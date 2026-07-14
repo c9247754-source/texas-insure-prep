@@ -18,7 +18,7 @@ const body = Source_Sans_3({
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") ||
-      "https://texas-insure-prep.vercel.app",
+      "https://www.texasinsureprep.com",
   ),
   title: {
     default: "Texas Insure Prep — Free TX Life & Health Practice Tests",
