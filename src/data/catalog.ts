@@ -1,10 +1,21 @@
-import { TX_LIFE_HEALTH_QUESTIONS, TX_LIFE_HEALTH_TRACK } from "./questions/tx-life-health";
+import {
+  TX_LIFE_HEALTH_QUESTIONS,
+  TX_LIFE_HEALTH_TRACK,
+} from "./questions/tx-life-health";
+import {
+  TX_PROPERTY_CASUALTY_QUESTIONS,
+  TX_PROPERTY_CASUALTY_TRACK,
+} from "./questions/tx-property-casualty";
 import type { ExamTrack, Question, QuestionDomain } from "./types";
 
-export const EXAMS: ExamTrack[] = [TX_LIFE_HEALTH_TRACK];
+export const EXAMS: ExamTrack[] = [
+  TX_LIFE_HEALTH_TRACK,
+  TX_PROPERTY_CASUALTY_TRACK,
+];
 
 const QUESTION_BANKS: Record<string, Question[]> = {
   [TX_LIFE_HEALTH_TRACK.slug]: TX_LIFE_HEALTH_QUESTIONS,
+  [TX_PROPERTY_CASUALTY_TRACK.slug]: TX_PROPERTY_CASUALTY_QUESTIONS,
 };
 
 export function getExam(slug: string): ExamTrack | undefined {

@@ -13,8 +13,8 @@ export type Product = {
 };
 
 export const FREE_PRACTICE_LIMIT = 20;
-export const FREE_MOCK_LIMIT = 10;
-export const PREMIUM_MOCK_LIMIT = 25;
+export const FREE_MOCK_LIMIT = 15;
+export const PREMIUM_MOCK_LIMIT = 50;
 
 export const PRODUCTS: Record<ProductId, Product> = {
   unlock: {
@@ -24,10 +24,10 @@ export const PRODUCTS: Record<ProductId, Product> = {
     amountCents: 1299,
     blurb: "Lifetime access on this browser for the complete TX Life & Health bank.",
     features: [
-      "All practice questions (not just the free 20)",
-      "Full-length timed mocks",
-      "Instant explanations + score review",
-      "Texas law topic coverage unlocked",
+      "400+ Life & Health practice questions",
+      "P&C starter bank included",
+      "Domain drills + longer timed mocks",
+      "Weak-domain score review + Texas law depth",
     ],
     creemEnvKey: "CREEM_PRODUCT_UNLOCK",
   },

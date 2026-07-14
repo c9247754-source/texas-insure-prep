@@ -61,6 +61,28 @@ export function QuizEngine({
     return { correct, total: questions.length };
   }, [answers, questions]);
 
+  const domainBreakdown = useMemo(() => {
+    const map = new Map<
+      string,
+      { label: string; correct: number; total: number }
+    >();
+    for (const q of questions) {
+      const row = map.get(q.domain) ?? {
+        label: DOMAIN_LABELS[q.domain],
+        correct: 0,
+        total: 0,
+      };
+      row.total += 1;
+      if (answers[q.id] === q.correctIndex) row.correct += 1;
+      map.set(q.domain, row);
+    }
+    return [...map.values()].sort((a, b) => {
+      const ap = a.total ? a.correct / a.total : 0;
+      const bp = b.total ? b.correct / b.total : 0;
+      return ap - bp;
+    });
+  }, [answers, questions]);
+
   function selectChoice(choiceIndex: number) {
     if (!current || submitted) return;
     if (mode === "mock" && answers[current.id] !== undefined) return;
@@ -101,6 +123,7 @@ export function QuizEngine({
   if (submitted || (mode === "mock" && secondsLeft === 0 && timerStarted)) {
     const pct = Math.round((score.correct / score.total) * 100);
     const pass = pct >= 70;
+    const missed = questions.filter((q) => answers[q.id] !== q.correctIndex);
     return (
       <div className="mx-auto max-w-2xl">
         <p className="eyebrow">Results</p>
@@ -112,29 +135,96 @@ export function QuizEngine({
           you schedule Pearson VUE.
         </p>
 
-        <div className="mt-8 grid gap-3">
-          {questions.map((q, i) => {
-            const picked = answers[q.id];
-            const ok = picked === q.correctIndex;
-            return (
-              <div key={q.id} className="border border-[var(--line)] bg-white p-4">
-                <p className="text-xs uppercase tracking-wider text-[var(--ink-muted)]">
-                  Q{i + 1} · {DOMAIN_LABELS[q.domain]} ·{" "}
-                  {ok ? (
-                    <span className="text-[var(--pass)]">Correct</span>
-                  ) : (
-                    <span className="text-[var(--fail)]">Missed</span>
-                  )}
-                </p>
-                <p className="mt-2 font-medium text-[var(--ink)]">{q.prompt}</p>
-                <p className="mt-2 text-sm text-[var(--ink-muted)]">
-                  Answer: {q.choices[q.correctIndex]}
-                </p>
-                <p className="mt-1 text-sm text-[var(--ink)]">{q.explanation}</p>
-              </div>
-            );
-          })}
-        </div>
+        {domainBreakdown.length > 1 && (
+          <div className="mt-8 border border-[var(--line)] bg-white p-5">
+            <h2 className="font-display text-xl text-[var(--navy)]">
+              Weak domains first
+            </h2>
+            <ul className="mt-4 grid gap-2">
+              {domainBreakdown.map((row) => {
+                const domainPct = Math.round((row.correct / row.total) * 100);
+                return (
+                  <li
+                    key={row.label}
+                    className="flex items-center justify-between gap-3 text-sm"
+                  >
+                    <span className="text-[var(--ink)]">{row.label}</span>
+                    <span
+                      className={
+                        domainPct >= 70
+                          ? "font-mono text-[var(--pass)]"
+                          : "font-mono text-[var(--fail)]"
+                      }
+                    >
+                      {row.correct}/{row.total} · {domainPct}%
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+            <p className="mt-3 text-sm text-[var(--ink-muted)]">
+              Drill the lowest domain on the{" "}
+              <Link
+                href={`/topics/${examSlug}`}
+                className="underline underline-offset-2"
+              >
+                topics map
+              </Link>
+              .
+            </p>
+          </div>
+        )}
+
+        {missed.length > 0 && (
+          <div className="mt-8">
+            <h2 className="font-display text-xl text-[var(--navy)]">
+              Missed questions ({missed.length})
+            </h2>
+            <div className="mt-4 grid gap-3">
+              {missed.map((q) => (
+                <div key={q.id} className="border border-[var(--line)] bg-white p-4">
+                  <p className="text-xs uppercase tracking-wider text-[var(--ink-muted)]">
+                    {DOMAIN_LABELS[q.domain]}
+                  </p>
+                  <p className="mt-2 font-medium text-[var(--ink)]">{q.prompt}</p>
+                  <p className="mt-2 text-sm text-[var(--ink-muted)]">
+                    Answer: {q.choices[q.correctIndex]}
+                  </p>
+                  <p className="mt-1 text-sm text-[var(--ink)]">{q.explanation}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <details className="mt-8 border border-[var(--line)] bg-white/80 p-4">
+          <summary className="cursor-pointer font-medium text-[var(--navy)]">
+            Full answer review ({questions.length})
+          </summary>
+          <div className="mt-4 grid gap-3">
+            {questions.map((q, i) => {
+              const picked = answers[q.id];
+              const ok = picked === q.correctIndex;
+              return (
+                <div key={q.id} className="border border-[var(--line)] bg-white p-4">
+                  <p className="text-xs uppercase tracking-wider text-[var(--ink-muted)]">
+                    Q{i + 1} · {DOMAIN_LABELS[q.domain]} ·{" "}
+                    {ok ? (
+                      <span className="text-[var(--pass)]">Correct</span>
+                    ) : (
+                      <span className="text-[var(--fail)]">Missed</span>
+                    )}
+                  </p>
+                  <p className="mt-2 font-medium text-[var(--ink)]">{q.prompt}</p>
+                  <p className="mt-2 text-sm text-[var(--ink-muted)]">
+                    Answer: {q.choices[q.correctIndex]}
+                  </p>
+                  <p className="mt-1 text-sm text-[var(--ink)]">{q.explanation}</p>
+                </div>
+              );
+            })}
+          </div>
+        </details>
 
         {showUpgradeAfter && (
           <div className="mt-8">

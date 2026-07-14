@@ -3,6 +3,7 @@ import Link from "next/link";
 const links = [
   { href: "/practice/tx-life-health", label: "Practice" },
   { href: "/mock/tx-life-health", label: "Mock exam" },
+  { href: "/learn", label: "Guides" },
   { href: "/pricing", label: "Pricing" },
   { href: "/guide/texas-law", label: "TX Law PDF" },
   { href: "/topics/tx-life-health", label: "Topics" },
@@ -47,6 +48,10 @@ export function SiteFooter() {
         <p>
           <Link href="/disclaimer" className="underline underline-offset-2">
             Full disclaimer
+          </Link>
+          {" · "}
+          <Link href="/learn" className="underline underline-offset-2">
+            Study guides
           </Link>
           {" · "}
           <Link href="/pricing" className="underline underline-offset-2">

@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { CourseBanner } from "@/components/QuizEngine";
 import { EXAMS, getQuestions } from "@/data/catalog";
+import { LEARN_ARTICLES } from "@/data/seo/learn-articles";
 
 export default function HomePage() {
-  const exam = EXAMS[0];
-  const count = getQuestions(exam.slug).length;
+  const primary = EXAMS[0];
+  const secondary = EXAMS[1];
+  const count = getQuestions(primary.slug).length;
+  const pcCount = secondary ? getQuestions(secondary.slug).length : 0;
 
   return (
     <div className="mx-auto max-w-5xl">
@@ -16,28 +19,28 @@ export default function HomePage() {
           </h1>
           <p className="mt-5 max-w-lg text-lg leading-relaxed text-[var(--ink-muted)]">
             First-time pass rates for TX Life & Health hover around the mid-50s.
-            Drill original practice questions — especially Texas law — before you
+            Drill {count}+ original questions — especially Texas law — before you
             book Pearson VUE.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={`/practice/${exam.slug}`} className="btn-primary">
+            <Link href={`/practice/${primary.slug}`} className="btn-primary">
               Start free practice
             </Link>
             <Link href="/pricing" className="btn-secondary">
               Unlock full bank · $12.99
             </Link>
-            <Link href="/guide/texas-law" className="btn-ghost">
-              TX Law PDF · $9.99
+            <Link href="/learn" className="btn-ghost">
+              Free study guides
             </Link>
           </div>
         </div>
 
         <aside className="border border-[var(--line)] bg-white/80 p-6 shadow-[8px_8px_0_rgba(22,50,79,0.08)]">
           <p className="text-xs uppercase tracking-[0.18em] text-[var(--ink-muted)]">
-            Launch track
+            Flagship track
           </p>
           <h2 className="mt-2 font-display text-2xl text-[var(--navy)]">
-            {exam.shortTitle}
+            {primary.shortTitle}
           </h2>
           <dl className="mt-5 grid grid-cols-2 gap-4 text-sm">
             <div>
@@ -49,19 +52,19 @@ export default function HomePage() {
             <div>
               <dt className="text-[var(--ink-muted)]">Real exam pace</dt>
               <dd className="text-xl font-semibold text-[var(--ink)]">
-                ~{exam.scoredQuestions} scored
+                ~{primary.scoredQuestions} scored
               </dd>
             </div>
             <div>
               <dt className="text-[var(--ink-muted)]">Time limit</dt>
               <dd className="text-xl font-semibold text-[var(--ink)]">
-                {exam.timeMinutes} min
+                {primary.timeMinutes} min
               </dd>
             </div>
             <div>
               <dt className="text-[var(--ink-muted)]">Pass target</dt>
               <dd className="text-xl font-semibold text-[var(--ink)]">
-                {exam.passingScore}%
+                {primary.passingScore}%
               </dd>
             </div>
           </dl>
@@ -72,13 +75,13 @@ export default function HomePage() {
         {[
           {
             title: "Practice mode",
-            body: "Free preview of 20 questions. Unlock the full bank for $12.99.",
-            href: `/practice/${exam.slug}`,
+            body: `Free preview of 20 questions. Unlock all ${count} L&H items for $12.99.`,
+            href: `/practice/${primary.slug}`,
           },
           {
             title: "Mock exam",
             body: "Timed runs — free short mock, longer exams after unlock.",
-            href: `/mock/${exam.slug}`,
+            href: `/mock/${primary.slug}`,
           },
           {
             title: "Texas law PDF",
@@ -99,6 +102,61 @@ export default function HomePage() {
             </p>
           </Link>
         ))}
+      </section>
+
+      {secondary && (
+        <section className="mt-16 border border-[var(--line)] bg-[var(--paper-deep)] p-6 md:p-8">
+          <p className="eyebrow">Also live</p>
+          <h2 className="mt-2 font-display text-3xl text-[var(--navy)]">
+            {secondary.shortTitle} starter bank
+          </h2>
+          <p className="mt-3 max-w-2xl text-[var(--ink-muted)]">
+            {pcCount} original P&C practice items covering homeowners, auto,
+            commercial liability themes, and Texas market conduct — included with
+            the same unlock.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href={`/practice/${secondary.slug}`}
+              className="btn-secondary"
+            >
+              Start P&C practice
+            </Link>
+            <Link href={`/topics/${secondary.slug}`} className="btn-ghost">
+              P&C topics
+            </Link>
+          </div>
+        </section>
+      )}
+
+      <section className="mt-16">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className="eyebrow">SEO study guides</p>
+            <h2 className="mt-2 font-display text-3xl text-[var(--navy)]">
+              Free licensing guides
+            </h2>
+          </div>
+          <Link href="/learn" className="text-sm text-[var(--navy)] underline underline-offset-2">
+            View all
+          </Link>
+        </div>
+        <div className="mt-6 grid gap-3 md:grid-cols-2">
+          {LEARN_ARTICLES.slice(0, 4).map((article) => (
+            <Link
+              key={article.slug}
+              href={`/learn/${article.slug}`}
+              className="border border-[var(--line)] bg-white/80 px-4 py-3 hover:border-[var(--navy)]"
+            >
+              <p className="text-xs uppercase tracking-[0.14em] text-[var(--ink-muted)]">
+                {article.eyebrow}
+              </p>
+              <p className="mt-1 font-display text-lg text-[var(--navy)]">
+                {article.title}
+              </p>
+            </Link>
+          ))}
+        </div>
       </section>
 
       <CourseBanner />

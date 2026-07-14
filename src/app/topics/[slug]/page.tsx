@@ -54,9 +54,17 @@ export default async function TopicsPage({ params }: Props) {
                   {count} practice questions in the bank
                 </p>
               </div>
-              <Link href={`/practice/${slug}`} className="btn-secondary">
-                Drill all
-              </Link>
+              <div className="flex flex-wrap gap-2">
+                <Link
+                  href={`/practice/${slug}/${domain}`}
+                  className="btn-secondary"
+                >
+                  Drill topic
+                </Link>
+                <Link href={`/practice/${slug}`} className="btn-ghost">
+                  Mixed
+                </Link>
+              </div>
             </div>
           );
         })}

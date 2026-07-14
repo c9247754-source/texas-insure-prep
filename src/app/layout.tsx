@@ -16,12 +16,23 @@ const body = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") ||
+      "https://texas-insure-prep.vercel.app",
+  ),
   title: {
     default: "Texas Insure Prep — Free TX Life & Health Practice Tests",
     template: "%s · Texas Insure Prep",
   },
   description:
-    "Free Texas Life, Accident & Health insurance license practice tests with instant explanations. Drill general concepts and Texas law before Pearson VUE.",
+    "Free Texas Life, Accident & Health insurance license practice tests with 400+ original questions, Texas law drills, timed mocks, and study guides before Pearson VUE.",
+  openGraph: {
+    title: "Texas Insure Prep — Free TX Life & Health Practice Tests",
+    description:
+      "400+ original practice questions for Texas insurance licensing. Drill Texas law, ethics, and timed mocks.",
+    type: "website",
+    locale: "en_US",
+  },
 };
 
 export default function RootLayout({

@@ -26,7 +26,7 @@ export default async function MockPage({ params }: Props) {
   const access = await getAccess();
   const limit = access.premium ? PREMIUM_MOCK_LIMIT : FREE_MOCK_LIMIT;
   const pool = shuffle(getQuestions(slug)).slice(0, limit);
-  const minutes = access.premium ? 35 : 15;
+  const minutes = access.premium ? 60 : 18;
 
   return (
     <div className="mx-auto max-w-2xl">
