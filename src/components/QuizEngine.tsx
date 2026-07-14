@@ -277,12 +277,15 @@ export function QuizEngine({
   const isCorrect = selected === current.correctIndex;
 
   return (
-    <div className="mx-auto max-w-2xl">
+    <div className="mx-auto max-w-2xl" key={current.id}>
       <div className="flex flex-wrap items-end justify-between gap-3 border-b border-[var(--line)] pb-4">
         <div>
           <p className="eyebrow">{title}</p>
           <p className="mt-1 text-sm text-[var(--ink-muted)]">
-            Question {index + 1} of {questions.length} ·{" "}
+            <span className="font-mono font-semibold text-[var(--ink)]">
+              Question {index + 1}/{questions.length}
+            </span>
+            {" · "}
             {DOMAIN_LABELS[current.domain]}
           </p>
         </div>
@@ -315,7 +318,7 @@ export function QuizEngine({
 
           return (
             <button
-              key={choice}
+              key={`${current.id}-${choiceIndex}`}
               type="button"
               className={`${styles} px-4 py-3 text-[15px] leading-relaxed`}
               onClick={() => selectChoice(choiceIndex)}
@@ -340,7 +343,7 @@ export function QuizEngine({
         </div>
       )}
 
-      <div className="mt-8 flex flex-wrap gap-3">
+      <div className="mt-8 flex flex-wrap items-center gap-3">
         <button
           type="button"
           className="btn-ghost"
@@ -350,14 +353,23 @@ export function QuizEngine({
           Previous
         </button>
         {mode === "practice" ? (
-          <button
-            type="button"
-            className="btn-primary"
-            onClick={goNext}
-            disabled={selected === undefined}
-          >
-            {index === questions.length - 1 ? "Finish & review" : "Next"}
-          </button>
+          <>
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={goNext}
+              disabled={selected === undefined}
+            >
+              {index === questions.length - 1
+                ? "Finish & review"
+                : "Next question"}
+            </button>
+            {selected === undefined && (
+              <p className="text-sm text-[var(--ink-muted)]">
+                Select an answer first to continue.
+              </p>
+            )}
+          </>
         ) : (
           <>
             <button
@@ -366,7 +378,7 @@ export function QuizEngine({
               onClick={goNext}
               disabled={index === questions.length - 1}
             >
-              Next
+              Next question
             </button>
             <button
               type="button"
