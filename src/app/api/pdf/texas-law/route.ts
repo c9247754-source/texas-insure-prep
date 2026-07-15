@@ -3,6 +3,19 @@ import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import { getAccess } from "@/lib/access";
 import { TEXAS_LAW_CHEAT_SHEET } from "@/data/texas-law-guide";
 
+/** Helvetica/WinAnsi cannot encode many Unicode glyphs used in the sheet. */
+function toWinAnsi(input: string): string {
+  return input
+    .replace(/\u2014|\u2013/g, "-")
+    .replace(/\u2018|\u2019/g, "'")
+    .replace(/\u201C|\u201D/g, '"')
+    .replace(/\u2022|\u25B8/g, "-")
+    .replace(/\u2260/g, "!=")
+    .replace(/\u2192/g, "->")
+    .replace(/\u00A0/g, " ")
+    .replace(/[^\x09\x0A\x0D\x20-\x7E]/g, "?");
+}
+
 export async function GET() {
   const access = await getAccess();
   if (!access.pdf) {
@@ -33,7 +46,8 @@ export async function GET() {
 
   function wrap(text: string, size: number, bold = false): string[] {
     const f = bold ? fontBold : font;
-    const words = text.split(/\s+/);
+    const safe = toWinAnsi(text);
+    const words = safe.split(/\s+/);
     const lines: string[] = [];
     let line = "";
     for (const word of words) {
