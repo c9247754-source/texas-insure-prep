@@ -68,6 +68,7 @@ export const LEARN_LONGFORM: Record<string, string[]> = {
     "Closing thought on pass rates: they measure systems, not character. Fix the system — outline weights, Texas drilling, timed stamina — and your probability moves. Character without a study system still fails exams.",
     "Readers aiming to beat the mid-50s base rate should treat this page as a diagnosis tool, not a scare story. Open a timed mock this week. Read the domain breakdown. Drill the bottom domain daily. Re-test. The pass rate is a statewide average; your personal rate is your last three mocks. Improve those, and the statistics become irrelevant.",
     "Bookmark your lowest-domain practice path and reopen it daily until that domain is no longer lowest. That single habit moves more candidates above 70% than any motivational video about statewide pass statistics.",
+    "One more hour of Texas law today is worth more to your personal pass probability than three hours of life insurance definitions you already recite from memory. Reallocate like a scoreboard, not like a vibe.",
   ],
   "texas-law-insurance-exam-guide": [
     "Texas law items exist because insurance is a regulated consumer product. The Texas Department of Insurance (TDI) supervises insurers and producers operating in Texas. Pearson VUE administers exams under contract. TDI sets licensing frameworks; Pearson delivers tests. Do not confuse the testing vendor with the regulator on exam stems.",
@@ -108,5 +109,6 @@ export const LEARN_LONGFORM: Record<string, string[]> = {
     "If you only read one Texas law page before Pearson VUE, make it this one plus a full Texas-law question drill. Regulator identity, appointments, guaranty purpose, replacement honesty, unfair trade verbs, fiduciary premiums, CE renewals, and clean advertising cover the majority of high-yield state themes. Master those eight buckets and Texas items stop being mysterious.",
     "Printable companion: unlock the Texas Law Printable Cheat Sheet on this site, mark every miss from drills onto it, and carry that marked sheet into your final week. The marking is the product — blank sheets do not raise scores.",
     "Revisit this guide after every mock that shows Texas law under 70%. Reread only the section matching your misses — regulator, appointments, guaranty, replacement, unfair trade, fiduciary, CE, or advertising — then immediately run another Texas-only drill. Closed-loop reading beats linear reading for exam outcomes.",
+    "Study close: if two answers both sound lawful, choose the one that requires clearer disclosure to the consumer. That heuristic alone salvages many Texas ethics and market-conduct items when time is short and stems feel identical.",
   ],
 };
