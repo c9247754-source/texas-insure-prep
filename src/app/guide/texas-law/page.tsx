@@ -7,9 +7,9 @@ import { PRODUCTS } from "@/data/pricing";
 import { TEXAS_LAW_CHEAT_SHEET } from "@/data/texas-law-guide";
 
 export const metadata: Metadata = {
-  title: "Texas Law Printable Cheat Sheet",
+  title: "Texas Law Cheat Sheet PDF",
   description:
-    "Printable Texas law study sheet for Life & Health licensing — print or save as PDF from your browser.",
+    "Download the Texas law cheat sheet PDF for Life & Health licensing — offline study file plus printable web sheet.",
 };
 
 export default async function TexasLawGuidePage() {
@@ -47,7 +47,12 @@ export default async function TexasLawGuidePage() {
         <Link href="/pricing" className="btn-ghost">
           ← Pricing
         </Link>
-        <PrintButton />
+        <div className="flex flex-wrap gap-2">
+          <a href="/api/pdf/texas-law" className="btn-primary">
+            Download PDF
+          </a>
+          <PrintButton />
+        </div>
       </div>
 
       <div className="border border-[var(--line)] bg-white p-6 md:p-10 print:border-0 print:p-0">

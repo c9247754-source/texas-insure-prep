@@ -30,11 +30,11 @@ export default function RestoreAccessPage() {
         >
           {SUPPORT_EMAIL}
         </a>{" "}
-        with your Creem receipt. Or return to{" "}
-        <Link href="/pricing" className="underline underline-offset-2">
-          pricing
-        </Link>
-        .
+        with your Creem receipt. Or open{" "}
+        <Link href="/account" className="underline underline-offset-2">
+          Account
+        </Link>{" "}
+        for entitlements and progress.
       </p>
     </div>
   );

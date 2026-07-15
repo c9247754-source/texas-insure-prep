@@ -23,7 +23,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
     amountCents: 1299,
     blurb: "Lifetime access on this browser for the complete TX Life & Health bank.",
     features: [
-        "680+ Life & Health practice questions",
+      "1000+ Life & Health practice questions",
       "P&C starter bank included",
       "130-question / 150-minute timed mocks",
       "Cross-device restore code after purchase",
@@ -33,16 +33,16 @@ export const PRODUCTS: Record<ProductId, Product> = {
   },
   pdf: {
     id: "pdf",
-    name: "Texas Law Printable Cheat Sheet",
+    name: "Texas Law Cheat Sheet PDF",
     priceLabel: "$9.99",
     amountCents: 999,
     blurb:
-      "One-sitting printable review of Texas law themes — open in browser, print or save as PDF from your device.",
+      "Download a real PDF plus the printable on-site sheet — high-yield Texas law for one-sitting review.",
     features: [
-      "Texas regulator & licensing checklist",
-      "Guaranty association / CE / replacement reminders",
-      "High-yield ethics & unfair trade snaps",
-      "Print from browser — no app required",
+      "Downloadable PDF file (texas-law-cheat-sheet.pdf)",
+      "Same content on the printable web sheet",
+      "Guaranty / CE / replacement / unfair trade snaps",
+      "Study offline after download",
     ],
     creemEnvKey: "CREEM_PRODUCT_PDF",
   },

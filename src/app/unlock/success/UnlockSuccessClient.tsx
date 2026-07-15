@@ -111,6 +111,9 @@ export default function UnlockSuccessClient() {
               Start full practice
             </Link>
           )}
+          <Link href="/account" className="btn-ghost">
+            Account
+          </Link>
           <Link href="/pricing" className="btn-secondary">
             Pricing
           </Link>

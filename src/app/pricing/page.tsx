@@ -122,8 +122,8 @@ export default async function PricingPage({
             if you clear cookies or switch browsers.
           </li>
           <li>
-            Texas Law printable cheat sheet for one-sitting state-section review
-            before Pearson VUE.
+            Texas Law cheat sheet PDF download plus printable web sheet for
+            one-sitting state-section review before Pearson VUE.
           </li>
           <li>
             Secure checkout via Creem. Need help? Email{" "}
