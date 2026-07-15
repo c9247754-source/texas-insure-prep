@@ -115,8 +115,15 @@ export default async function PricingPage({
             130-question / 150-minute timed mocks aligned to InsTX-LAH pace.
           </li>
           <li>
-            Texas Law cheat sheet page (PDF product) for one-sitting state-section
-            review before Pearson VUE.
+            Cross-device restore code after checkout — paste it anytime at{" "}
+            <a href="/unlock/restore" className="underline underline-offset-2">
+              Restore Access
+            </a>{" "}
+            if you clear cookies or switch browsers.
+          </li>
+          <li>
+            Texas Law printable cheat sheet for one-sitting state-section review
+            before Pearson VUE.
           </li>
           <li>
             Secure checkout via Creem. Need help? Email{" "}

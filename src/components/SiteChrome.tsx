@@ -6,7 +6,8 @@ const links = [
   { href: "/mock/tx-life-health", label: "Mock exam" },
   { href: "/learn", label: "Guides" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/guide/texas-law", label: "TX Law PDF" },
+  { href: "/unlock/restore", label: "Restore" },
+  { href: "/guide/texas-law", label: "TX Law sheet" },
   { href: "/topics/tx-life-health", label: "Topics" },
 ];
 
@@ -70,6 +71,9 @@ export function SiteFooter() {
           </Link>
           <Link href="/pricing" className="underline underline-offset-2">
             Pricing
+          </Link>
+          <Link href="/unlock/restore" className="underline underline-offset-2">
+            Restore access
           </Link>
         </p>
         <p>Affiliate links may earn a commission.</p>

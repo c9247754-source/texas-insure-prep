@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/pricing",
     "/learn",
     "/guide/texas-law",
+    "/unlock/restore",
     "/disclaimer",
     "/privacy",
     "/terms",

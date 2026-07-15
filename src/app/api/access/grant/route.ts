@@ -5,6 +5,7 @@ import {
   type ProductId,
 } from "@/data/pricing";
 import { parseAccessCookie, serializeAccess } from "@/lib/access";
+import { issueAccessCode } from "@/lib/access-code";
 import { isCreemConfigured } from "@/lib/app-url";
 import { verifyCreemRedirectSignature } from "@/lib/creem";
 
@@ -57,7 +58,13 @@ export async function POST(request: Request) {
       );
     }
     const next = grant(productId, current);
-    const res = NextResponse.json({ ok: true, access: next, mode: "demo" });
+    const accessCode = issueAccessCode(next);
+    const res = NextResponse.json({
+      ok: true,
+      access: next,
+      mode: "demo",
+      accessCode,
+    });
     res.cookies.set(ACCESS_COOKIE, serializeAccess(next), {
       httpOnly: true,
       sameSite: "lax",
@@ -91,11 +98,13 @@ export async function POST(request: Request) {
     }
 
     const next = grant(productId, current);
+    const accessCode = issueAccessCode(next);
     const res = NextResponse.json({
       ok: true,
       access: next,
       mode: "creem",
       productId,
+      accessCode,
     });
     res.cookies.set(ACCESS_COOKIE, serializeAccess(next), {
       httpOnly: true,

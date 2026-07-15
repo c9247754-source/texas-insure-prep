@@ -23,9 +23,10 @@ export const PRODUCTS: Record<ProductId, Product> = {
     amountCents: 1299,
     blurb: "Lifetime access on this browser for the complete TX Life & Health bank.",
     features: [
-      "680+ Life & Health practice questions",
+        "680+ Life & Health practice questions",
       "P&C starter bank included",
       "130-question / 150-minute timed mocks",
+      "Cross-device restore code after purchase",
       "Weak-domain score review + Texas law depth",
     ],
     creemEnvKey: "CREEM_PRODUCT_UNLOCK",
