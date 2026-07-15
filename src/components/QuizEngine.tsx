@@ -6,6 +6,7 @@ import type { Question } from "@/data/types";
 import { DOMAIN_LABELS } from "@/data/types";
 import { COURSE_CTA } from "@/data/catalog";
 import { UpgradePrompt } from "@/components/UpgradePrompt";
+import { recordAnswer } from "@/lib/progress";
 
 type Mode = "practice" | "mock";
 
@@ -88,10 +89,21 @@ export function QuizEngine({
     if (mode === "mock" && answers[current.id] !== undefined) return;
 
     setAnswers((prev) => ({ ...prev, [current.id]: choiceIndex }));
+    recordAnswer(examSlug, current.id, choiceIndex === current.correctIndex);
 
     if (mode === "practice") {
       setRevealed(true);
     }
+  }
+
+  function finishExam() {
+    for (const q of questions) {
+      const picked = answers[q.id];
+      if (picked !== undefined) {
+        recordAnswer(examSlug, q.id, picked === q.correctIndex);
+      }
+    }
+    setSubmitted(true);
   }
 
   function goNext() {
@@ -100,7 +112,7 @@ export function QuizEngine({
       setIndex(index + 1);
       return;
     }
-    setSubmitted(true);
+    finishExam();
   }
 
   function goPrev() {
@@ -383,7 +395,7 @@ export function QuizEngine({
             <button
               type="button"
               className="btn-primary"
-              onClick={() => setSubmitted(true)}
+              onClick={finishExam}
             >
               Submit exam
             </button>

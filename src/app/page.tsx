@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CourseBanner } from "@/components/QuizEngine";
 import { EXAMS, getQuestions } from "@/data/catalog";
 import { LEARN_ARTICLES } from "@/data/seo/learn-articles";
+import { FREE_PRACTICE_LIMIT } from "@/data/pricing";
 
 export default function HomePage() {
   const primary = EXAMS[0];
@@ -75,12 +76,12 @@ export default function HomePage() {
         {[
           {
             title: "Practice mode",
-            body: `Free preview of 20 questions. Unlock all ${count} L&H items for $12.99.`,
+            body: `Free preview of ${FREE_PRACTICE_LIMIT} questions. Unlock all ${count} L&H items for $12.99.`,
             href: `/practice/${primary.slug}`,
           },
           {
             title: "Mock exam",
-            body: "Timed runs — free short mock, longer exams after unlock.",
+            body: "Free 25-question mock · unlock 130Q / 150 min full InsTX-LAH pace.",
             href: `/mock/${primary.slug}`,
           },
           {

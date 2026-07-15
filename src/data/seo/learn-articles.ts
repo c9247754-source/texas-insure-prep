@@ -1,3 +1,10 @@
+import {
+  LEARN_BODY_EXTRA,
+  LEARN_FAQS,
+  LEARN_RELATED,
+  type LearnFaq,
+} from "./learn-extra";
+
 export type LearnArticle = {
   slug: string;
   title: string;
@@ -193,4 +200,29 @@ export const LEARN_ARTICLES: LearnArticle[] = [
 
 export function getLearnArticle(slug: string): LearnArticle | undefined {
   return LEARN_ARTICLES.find((a) => a.slug === slug);
+}
+
+export function getLearnArticleBody(article: LearnArticle): string[] {
+  const extra = LEARN_BODY_EXTRA[article.slug] ?? [];
+  return [...article.body, ...extra];
+}
+
+export function getLearnArticleFaqs(slug: string): LearnFaq[] {
+  return LEARN_FAQS[slug] ?? [];
+}
+
+export function getLearnRelatedArticles(
+  slug: string,
+): { slug: string; title: string }[] {
+  const related = LEARN_RELATED[slug] ?? [];
+  return related.map((relatedSlug) => {
+    if (relatedSlug === "pricing") {
+      return { slug: "pricing", title: "Pricing — unlock & Texas law PDF" };
+    }
+    const article = getLearnArticle(relatedSlug);
+    return {
+      slug: relatedSlug,
+      title: article?.title ?? relatedSlug,
+    };
+  });
 }

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { QuizEngine } from "@/components/QuizEngine";
 import { UpgradePrompt } from "@/components/UpgradePrompt";
 import { getExam, getQuestions, shuffle } from "@/data/catalog";
-import { FREE_MOCK_LIMIT, PREMIUM_MOCK_LIMIT } from "@/data/pricing";
+import { FREE_MOCK_LIMIT } from "@/data/pricing";
 import { getAccess } from "@/lib/access";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!exam) return { title: "Mock exam" };
   return {
     title: `${exam.shortTitle} Timed Mock Exam`,
-    description: `Timed ${exam.title} mock exam simulator for study.`,
+    description: `Timed ${exam.title} mock exam simulator — ${exam.scoredQuestions} questions, ${exam.timeMinutes} minutes when unlocked.`,
   };
 }
 
@@ -24,9 +24,14 @@ export default async function MockPage({ params }: Props) {
   if (!exam) notFound();
 
   const access = await getAccess();
-  const limit = access.premium ? PREMIUM_MOCK_LIMIT : FREE_MOCK_LIMIT;
+  const limit = access.premium ? exam.scoredQuestions : FREE_MOCK_LIMIT;
+  const minutes = access.premium
+    ? exam.timeMinutes
+    : Math.max(
+        15,
+        Math.round((exam.timeMinutes * FREE_MOCK_LIMIT) / exam.scoredQuestions),
+      );
   const pool = shuffle(getQuestions(slug)).slice(0, limit);
-  const minutes = access.premium ? 60 : 18;
 
   return (
     <div className="mx-auto max-w-2xl">
@@ -34,7 +39,7 @@ export default async function MockPage({ params }: Props) {
         <div className="mb-8">
           <UpgradePrompt
             compact
-            reason={`Free mocks are ${FREE_MOCK_LIMIT} questions. Unlock for longer ${PREMIUM_MOCK_LIMIT}-question timed runs.`}
+            reason={`Free mocks are ${FREE_MOCK_LIMIT} questions (~${minutes} min). Unlock for full ${exam.scoredQuestions}-question / ${exam.timeMinutes}-minute exam pace.`}
           />
         </div>
       )}

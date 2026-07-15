@@ -108,30 +108,27 @@ export default async function PricingPage({
       </div>
 
       <section className="mt-12 border border-[var(--line)] bg-[var(--paper-deep)] p-6 text-sm text-[var(--ink-muted)]">
-        <p className="font-medium text-[var(--ink)]">How payments work (Creem)</p>
-        <ol className="mt-2 list-decimal space-y-1 pl-5">
+        <p className="font-medium text-[var(--ink)]">What you get after checkout</p>
+        <ul className="mt-2 list-disc space-y-1 pl-5">
           <li>
-            Create two one-time products in{" "}
+            Instant unlock on this browser — full question bank, domain drills, and
+            130-question / 150-minute timed mocks aligned to InsTX-LAH pace.
+          </li>
+          <li>
+            Texas Law cheat sheet page (PDF product) for one-sitting state-section
+            review before Pearson VUE.
+          </li>
+          <li>
+            Secure checkout via Creem. Need help? Email{" "}
             <a
-              href="https://www.creem.io/"
+              href="mailto:c9247754@gmail.com"
               className="underline underline-offset-2"
-              target="_blank"
-              rel="noopener noreferrer"
             >
-              Creem
-            </a>{" "}
-            ($12.99 unlock + $9.99 PDF).
+              c9247754@gmail.com
+            </a>
+            .
           </li>
-          <li>
-            Set <code>CREEM_API_KEY</code>, <code>CREEM_PRODUCT_UNLOCK</code>,{" "}
-            <code>CREEM_PRODUCT_PDF</code>, and{" "}
-            <code>NEXT_PUBLIC_APP_URL</code> (see <code>.env.example</code>).
-          </li>
-          <li>
-            Until Creem is connected, Buy opens a local demo unlock so you can
-            test the funnel.
-          </li>
-        </ol>
+        </ul>
       </section>
 
       <CourseBanner />
