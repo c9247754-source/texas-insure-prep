@@ -189,6 +189,7 @@ async function testHttpRoutes() {
     "/mock/tx-life-health",
     "/topics/tx-life-health",
     "/topics/tx-property-casualty",
+    "/outline",
     "/guide/texas-law",
     "/unlock/restore",
     "/unlock/demo?product=unlock",
@@ -344,6 +345,7 @@ async function testSitemap() {
   ok("sitemap has account", text.includes("/account"));
   ok("sitemap has missed", text.includes("/missed"));
   ok("sitemap has restore", text.includes("/unlock/restore"));
+  ok("sitemap has outline", text.includes("/outline"));
   ok("sitemap has P&C property", text.includes("/practice/tx-property-casualty/property"));
   ok("sitemap has learn how-to", text.includes("/learn/how-to-get-texas-life-health-license"));
 }

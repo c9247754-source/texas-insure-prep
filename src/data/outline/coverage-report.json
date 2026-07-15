@@ -1,0 +1,331 @@
+{
+  "generatedAt": "2026-07-15T12:44:00.159Z",
+  "source": {
+    "name": "Pearson VUE Texas Insurance Content Outlines",
+    "effective": "December 1, 2025",
+    "url": "https://www.pearsonvue.com/content/dam/VUE/vue/en/documents/publications/124401.pdf"
+  },
+  "totals": {
+    "topics": 27,
+    "strong": 22,
+    "ok": 5,
+    "weak": 0,
+    "coveragePct": 100
+  },
+  "weak": [],
+  "rows": [
+    {
+      "id": "life-whole",
+      "section": "Life · Types of policies",
+      "title": "Whole / limited-pay / single-premium",
+      "keywordHits": 3,
+      "keywordTotal": 4,
+      "score": 0.75,
+      "status": "strong",
+      "missingKeywords": [
+        "ordinary whole"
+      ]
+    },
+    {
+      "id": "life-ul-vl",
+      "section": "Life · Types of policies",
+      "title": "UL / VUL / variable / indexed / interest-sensitive",
+      "keywordHits": 5,
+      "keywordTotal": 5,
+      "score": 1,
+      "status": "strong",
+      "missingKeywords": []
+    },
+    {
+      "id": "life-term",
+      "section": "Life · Types of policies",
+      "title": "Term types & renewable/convertible",
+      "keywordHits": 5,
+      "keywordTotal": 6,
+      "score": 0.83,
+      "status": "strong",
+      "missingKeywords": [
+        "annually renewable"
+      ]
+    },
+    {
+      "id": "life-combo",
+      "section": "Life · Types of policies",
+      "title": "Joint / survivorship",
+      "keywordHits": 4,
+      "keywordTotal": 4,
+      "score": 1,
+      "status": "strong",
+      "missingKeywords": []
+    },
+    {
+      "id": "ann-types",
+      "section": "Annuities",
+      "title": "Immediate/deferred, fixed/variable/indexed",
+      "keywordHits": 8,
+      "keywordTotal": 8,
+      "score": 1,
+      "status": "strong",
+      "missingKeywords": []
+    },
+    {
+      "id": "life-riders",
+      "section": "Life · Riders & provisions",
+      "title": "WOP, GIR, payor, AD&D, COL, LTC rider",
+      "keywordHits": 7,
+      "keywordTotal": 7,
+      "score": 1,
+      "status": "strong",
+      "missingKeywords": []
+    },
+    {
+      "id": "life-provisions",
+      "section": "Life · Riders & provisions",
+      "title": "Free look, grace, loans, nonforfeiture, incontestability",
+      "keywordHits": 11,
+      "keywordTotal": 11,
+      "score": 1,
+      "status": "strong",
+      "missingKeywords": []
+    },
+    {
+      "id": "life-beneficiaries",
+      "section": "Life · Riders & provisions",
+      "title": "Beneficiary designations",
+      "keywordHits": 6,
+      "keywordTotal": 6,
+      "score": 1,
+      "status": "strong",
+      "missingKeywords": []
+    },
+    {
+      "id": "life-exclusions",
+      "section": "Life · Riders & provisions",
+      "title": "War / aviation / dangerous occupation",
+      "keywordHits": 2,
+      "keywordTotal": 3,
+      "score": 0.67,
+      "status": "strong",
+      "missingKeywords": [
+        "dangerous occupation"
+      ]
+    },
+    {
+      "id": "life-app-uw",
+      "section": "Life · Application & underwriting",
+      "title": "Application, warranties, receipts, replacement disclosures",
+      "keywordHits": 6,
+      "keywordTotal": 10,
+      "score": 0.6,
+      "status": "ok",
+      "missingKeywords": [
+        "warranty",
+        "patriot",
+        "glba",
+        "gramm-leach"
+      ]
+    },
+    {
+      "id": "life-uw-risk",
+      "section": "Life · Application & underwriting",
+      "title": "Insurable interest, FCRA, STOLI, risk class",
+      "keywordHits": 5,
+      "keywordTotal": 8,
+      "score": 0.63,
+      "status": "ok",
+      "missingKeywords": [
+        "fair credit",
+        "fcra",
+        "ioli"
+      ]
+    },
+    {
+      "id": "life-contract",
+      "section": "Life · Contract law",
+      "title": "Consideration, adhesion, aleatory, unilateral",
+      "keywordHits": 7,
+      "keywordTotal": 7,
+      "score": 1,
+      "status": "strong",
+      "missingKeywords": []
+    },
+    {
+      "id": "life-biz-tax",
+      "section": "Life · Other concepts",
+      "title": "Group life, key person, buy-sell, MEC, tax",
+      "keywordHits": 7,
+      "keywordTotal": 11,
+      "score": 0.64,
+      "status": "ok",
+      "missingKeywords": [
+        "contributory",
+        "buy sell",
+        "third-party ownership",
+        "social security"
+      ]
+    },
+    {
+      "id": "health-di",
+      "section": "Health · Policy types",
+      "title": "Disability income (individual, BOE, buyout, group, key)",
+      "keywordHits": 7,
+      "keywordTotal": 8,
+      "score": 0.88,
+      "status": "strong",
+      "missingKeywords": [
+        "residual disability"
+      ]
+    },
+    {
+      "id": "health-medexp",
+      "section": "Health · Policy types",
+      "title": "Major medical / HMO / PPO / POS / FSA / HDHP / HSA / HRA",
+      "keywordHits": 14,
+      "keywordTotal": 14,
+      "score": 1,
+      "status": "strong",
+      "missingKeywords": []
+    },
+    {
+      "id": "health-other",
+      "section": "Health · Policy types",
+      "title": "Medigap, LTC, COBRA, dental/vision/cancer/indemnity",
+      "keywordHits": 11,
+      "keywordTotal": 13,
+      "score": 0.85,
+      "status": "strong",
+      "missingKeywords": [
+        "short-term medical",
+        "accidental death and dismemberment"
+      ]
+    },
+    {
+      "id": "health-provisions",
+      "section": "Health · Provisions",
+      "title": "Mandatory health provisions & renewability",
+      "keywordHits": 9,
+      "keywordTotal": 13,
+      "score": 0.69,
+      "status": "strong",
+      "missingKeywords": [
+        "claim forms",
+        "time limit on certain defenses",
+        "preexisting",
+        "usual reasonable"
+      ]
+    },
+    {
+      "id": "health-social",
+      "section": "Health · Social & other",
+      "title": "Medicare/Medicaid/SS, workers comp, subrogation",
+      "keywordHits": 6,
+      "keywordTotal": 7,
+      "score": 0.86,
+      "status": "strong",
+      "missingKeywords": [
+        "occupational vs"
+      ]
+    },
+    {
+      "id": "tx-commissioner",
+      "section": "Texas · Common L&H statutes",
+      "title": "Commissioner powers, exams, penalties, C&D",
+      "keywordHits": 2,
+      "keywordTotal": 4,
+      "score": 0.5,
+      "status": "ok",
+      "missingKeywords": [
+        "cease and desist",
+        "examination of records"
+      ]
+    },
+    {
+      "id": "tx-defs",
+      "section": "Texas · Common L&H statutes",
+      "title": "Certificate of authority, domestic/foreign/alien, stock/mutual",
+      "keywordHits": 8,
+      "keywordTotal": 8,
+      "score": 1,
+      "status": "strong",
+      "missingKeywords": []
+    },
+    {
+      "id": "tx-licensing",
+      "section": "Texas · Common L&H statutes",
+      "title": "Licensing, appointment, CE, temporary, notifications",
+      "keywordHits": 5,
+      "keywordTotal": 6,
+      "score": 0.83,
+      "status": "strong",
+      "missingKeywords": [
+        "license suspension"
+      ]
+    },
+    {
+      "id": "tx-unfair",
+      "section": "Texas · Common L&H statutes",
+      "title": "Unfair practices, rebating, defamation, freud, commingling",
+      "keywordHits": 9,
+      "keywordTotal": 9,
+      "score": 1,
+      "status": "strong",
+      "missingKeywords": []
+    },
+    {
+      "id": "tx-guaranty",
+      "section": "Texas · Common L&H statutes",
+      "title": "Texas Life & Health Guaranty Association",
+      "keywordHits": 2,
+      "keywordTotal": 2,
+      "score": 1,
+      "status": "strong",
+      "missingKeywords": []
+    },
+    {
+      "id": "tx-life-mkt",
+      "section": "Texas · Life-only",
+      "title": "Illustrations, buyer's guide, free look, replacement",
+      "keywordHits": 3,
+      "keywordTotal": 6,
+      "score": 0.5,
+      "status": "ok",
+      "missingKeywords": [
+        "buyer's guide",
+        "buyers guide",
+        "policy summary"
+      ]
+    },
+    {
+      "id": "tx-credit-group",
+      "section": "Texas · Life-only",
+      "title": "Credit life / group life Texas rules themes",
+      "keywordHits": 2,
+      "keywordTotal": 3,
+      "score": 0.67,
+      "status": "strong",
+      "missingKeywords": [
+        "dependent coverage"
+      ]
+    },
+    {
+      "id": "tx-health",
+      "section": "Texas · Accident & health",
+      "title": "Newborns, chemical dependency, Medigap TX, AIDS testing, LTC, small group, ACA",
+      "keywordHits": 9,
+      "keywordTotal": 9,
+      "score": 1,
+      "status": "strong",
+      "missingKeywords": []
+    },
+    {
+      "id": "tx-hmo",
+      "section": "Texas · HMO",
+      "title": "HMO evidence of coverage / network themes",
+      "keywordHits": 3,
+      "keywordTotal": 3,
+      "score": 1,
+      "status": "strong",
+      "missingKeywords": []
+    }
+  ]
+}

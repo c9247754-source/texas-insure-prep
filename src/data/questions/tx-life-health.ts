@@ -15,7 +15,7 @@ export const TX_LIFE_HEALTH_TRACK: ExamTrack = {
   timeMinutes: 150,
   passingScore: 70,
   outlineNote:
-    "Public exam structure: roughly 100 general + 30 Texas law scored items (plus pretest items). This site uses original practice questions for study only.",
+    "Public exam structure: roughly 100 general + 30 Texas law scored items (plus pretest items). Practice items are original and mapped to Pearson VUE Texas Insurance Content Outlines themes (InsTX-LAH) — not live exam questions.",
 };
 
 /**

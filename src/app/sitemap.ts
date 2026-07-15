@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/pricing",
+    "/outline",
     "/learn",
     "/account",
     "/guide/texas-law",

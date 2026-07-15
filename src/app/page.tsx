@@ -20,8 +20,8 @@ export default function HomePage() {
           </h1>
           <p className="mt-5 max-w-lg text-lg leading-relaxed text-[var(--ink-muted)]">
             First-time pass rates for TX Life & Health hover around the mid-50s.
-            Drill {count}+ original questions — especially Texas law — before you
-            book Pearson VUE.
+            Drill {count}+ original questions mapped to Pearson VUE InsTX-LAH
+            outline themes — especially Texas law — before you book the exam.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href={`/practice/${primary.slug}`} className="btn-primary">
@@ -72,7 +72,25 @@ export default function HomePage() {
         </aside>
       </section>
 
-      <section className="mt-20 grid gap-8 md:grid-cols-3">
+      <section className="mt-14 border border-[var(--line)] bg-white/70 p-5 md:p-6">
+        <p className="eyebrow">Why candidates unlock</p>
+        <h2 className="mt-2 font-display text-2xl text-[var(--navy)] md:text-3xl">
+          Built against the public outline — not random trivia
+        </h2>
+        <p className="mt-3 max-w-2xl text-[var(--ink-muted)]">
+          We score the bank against Pearson VUE&apos;s published Texas Insurance
+          Content Outlines (InsTX-LAH). You practice original items on those
+          themes — then verify details on the official PDF before test day.
+        </p>
+        <Link
+          href="/outline"
+          className="mt-4 inline-block text-sm text-[var(--navy)] underline underline-offset-2"
+        >
+          See outline coverage map →
+        </Link>
+      </section>
+
+      <section className="mt-16 grid gap-8 md:grid-cols-3">
         {[
           {
             title: "Practice mode",

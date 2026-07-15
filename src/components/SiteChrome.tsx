@@ -9,6 +9,7 @@ const links = [
   { href: "/account", label: "Account" },
   { href: "/guide/texas-law", label: "TX Law PDF" },
   { href: "/topics/tx-life-health", label: "Topics" },
+  { href: "/outline", label: "Outline" },
 ];
 
 export function SiteHeader() {
@@ -44,8 +45,8 @@ export function SiteFooter() {
     <footer className="mt-auto border-t border-[var(--line)] bg-[var(--paper-deep)]">
       <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-8 text-sm text-[var(--ink-muted)] md:px-6">
         <p>
-          Educational practice only. Not affiliated with the Texas Department of
-          Insurance, Pearson VUE, or any insurer.
+          Educational practice only — original items mapped to public Pearson VUE
+          outline themes. Not affiliated with TDI, Pearson VUE, or any insurer.
         </p>
         <p>
           Support:{" "}

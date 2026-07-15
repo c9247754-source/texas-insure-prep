@@ -24,6 +24,7 @@ export const PRODUCTS: Record<ProductId, Product> = {
     blurb: "Lifetime access on this browser for the complete TX Life & Health bank.",
     features: [
       "1000+ Life & Health practice questions",
+      "Mapped to Pearson VUE InsTX-LAH outline themes",
       "P&C starter bank included",
       "130-question / 150-minute timed mocks",
       "Cross-device restore code after purchase",

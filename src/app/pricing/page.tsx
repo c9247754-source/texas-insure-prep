@@ -28,8 +28,15 @@ export default async function PricingPage({
         Pay once. Drill until you pass.
       </h1>
       <p className="mt-3 max-w-2xl text-lg text-[var(--ink-muted)]">
-        Free users get a taste. Most candidates unlock the bank for coffee-money
-        and stack the Texas law PDF the week before Pearson VUE.
+        Free users get a taste. Most candidates unlock the outline-aligned bank
+        for coffee-money and stack the Texas law PDF the week before Pearson VUE.
+      </p>
+      <p className="mt-2 text-sm text-[var(--ink-muted)]">
+        Coverage map:{" "}
+        <Link href="/outline" className="underline underline-offset-2">
+          InsTX-LAH outline themes
+        </Link>
+        . Original practice only — not live exam items.
       </p>
 
       {params.canceled && (
