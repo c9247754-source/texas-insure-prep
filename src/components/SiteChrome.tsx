@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SUPPORT_EMAIL } from "@/data/site";
 
 const links = [
   { href: "/practice/tx-life-health", label: "Practice" },
@@ -40,26 +41,38 @@ export function SiteHeader() {
 export function SiteFooter() {
   return (
     <footer className="mt-auto border-t border-[var(--line)] bg-[var(--paper-deep)]">
-      <div className="mx-auto flex max-w-5xl flex-col gap-2 px-4 py-8 text-sm text-[var(--ink-muted)] md:px-6">
+      <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-8 text-sm text-[var(--ink-muted)] md:px-6">
         <p>
           Educational practice only. Not affiliated with the Texas Department of
           Insurance, Pearson VUE, or any insurer.
         </p>
         <p>
+          Support:{" "}
+          <a
+            className="font-medium text-[var(--navy)] underline underline-offset-2"
+            href={`mailto:${SUPPORT_EMAIL}`}
+          >
+            {SUPPORT_EMAIL}
+          </a>
+        </p>
+        <p className="flex flex-wrap gap-x-3 gap-y-1">
+          <Link href="/privacy" className="underline underline-offset-2">
+            Privacy Policy
+          </Link>
+          <Link href="/terms" className="underline underline-offset-2">
+            Terms of Service
+          </Link>
           <Link href="/disclaimer" className="underline underline-offset-2">
-            Full disclaimer
+            Disclaimer
           </Link>
-          {" · "}
-          <Link href="/learn" className="underline underline-offset-2">
-            Study guides
+          <Link href="/contact" className="underline underline-offset-2">
+            Contact
           </Link>
-          {" · "}
           <Link href="/pricing" className="underline underline-offset-2">
             Pricing
           </Link>
-          {" · "}
-          Affiliate links may earn a commission.
         </p>
+        <p>Affiliate links may earn a commission.</p>
       </div>
     </footer>
   );

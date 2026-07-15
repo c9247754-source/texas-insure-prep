@@ -16,6 +16,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/learn",
     "/guide/texas-law",
     "/disclaimer",
+    "/privacy",
+    "/terms",
+    "/contact",
   ].map((path) => ({
     url: `${base}${path}`,
     lastModified: new Date(),
