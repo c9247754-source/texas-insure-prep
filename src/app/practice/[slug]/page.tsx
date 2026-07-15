@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { QuizEngine } from "@/components/QuizEngine";
+import { MissedPracticeLink } from "@/components/MissedPracticeLink";
 import { UpgradePrompt } from "@/components/UpgradePrompt";
 import { getExam, getQuestions, shuffle } from "@/data/catalog";
 import { FREE_PRACTICE_LIMIT } from "@/data/pricing";
@@ -42,6 +43,9 @@ export default async function PracticePage({ params }: Props) {
           />
         </div>
       )}
+      <div className="mb-6">
+        <MissedPracticeLink examSlug={slug} />
+      </div>
       <QuizEngine
         questions={questions}
         mode="practice"

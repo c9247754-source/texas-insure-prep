@@ -7,9 +7,9 @@ import { PRODUCTS } from "@/data/pricing";
 import { TEXAS_LAW_CHEAT_SHEET } from "@/data/texas-law-guide";
 
 export const metadata: Metadata = {
-  title: "Texas Law Cheat Sheet",
+  title: "Texas Law Printable Cheat Sheet",
   description:
-    "Printable Texas law study sheet for Life & Health licensing candidates.",
+    "Printable Texas law study sheet for Life & Health licensing — print or save as PDF from your browser.",
 };
 
 export default async function TexasLawGuidePage() {

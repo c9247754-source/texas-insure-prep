@@ -5,31 +5,26 @@ import { QuizEngine } from "@/components/QuizEngine";
 import { UpgradePrompt } from "@/components/UpgradePrompt";
 import { getExam, getQuestionsByDomain, shuffle } from "@/data/catalog";
 import { FREE_PRACTICE_LIMIT } from "@/data/pricing";
-import { DOMAIN_LABELS, type QuestionDomain } from "@/data/types";
+import { DOMAIN_LABELS, domainsForExam, type QuestionDomain } from "@/data/types";
 import { getAccess } from "@/lib/access";
 
 type Props = {
   params: Promise<{ slug: string; domain: string }>;
 };
 
-const DOMAINS: QuestionDomain[] = [
-  "life",
-  "health",
-  "annuity",
-  "ethics",
-  "texas-law",
-];
-
 function isDomain(value: string): value is QuestionDomain {
-  return (DOMAINS as string[]).includes(value);
+  return (
+    domainsForExam("tx-life-health").includes(value as QuestionDomain) ||
+    domainsForExam("tx-property-casualty").includes(value as QuestionDomain)
+  );
 }
 
 export async function generateStaticParams() {
   const slugs = ["tx-life-health", "tx-property-casualty"] as const;
   return slugs.flatMap((slug) =>
-    DOMAINS.filter((domain) => getQuestionsByDomain(slug, domain).length > 0).map(
-      (domain) => ({ slug, domain }),
-    ),
+    domainsForExam(slug)
+      .filter((domain) => getQuestionsByDomain(slug, domain).length > 0)
+      .map((domain) => ({ slug, domain })),
   );
 }
 
@@ -47,6 +42,7 @@ export default async function DomainPracticePage({ params }: Props) {
   const { slug, domain: domainParam } = await params;
   const exam = getExam(slug);
   if (!exam || !isDomain(domainParam)) notFound();
+  if (!domainsForExam(slug).includes(domainParam)) notFound();
 
   const access = await getAccess();
   const full = shuffle(getQuestionsByDomain(slug, domainParam));

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CourseBanner } from "@/components/QuizEngine";
+import { SITE_URL } from "@/data/site";
 import {
   LEARN_ARTICLES,
   getLearnArticle,
@@ -51,8 +52,22 @@ export default async function LearnArticlePage({ params }: Props) {
         }
       : null;
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    author: { "@type": "Organization", name: "Texas Insure Prep" },
+    publisher: { "@type": "Organization", name: "Texas Insure Prep" },
+    mainEntityOfPage: `${SITE_URL}/learn/${article.slug}`,
+  };
+
   return (
     <article className="mx-auto max-w-3xl">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       {faqSchema && (
         <script
           type="application/ld+json"

@@ -32,15 +32,16 @@ export const PRODUCTS: Record<ProductId, Product> = {
   },
   pdf: {
     id: "pdf",
-    name: "Texas Law Cheat Sheet PDF",
+    name: "Texas Law Printable Cheat Sheet",
     priceLabel: "$9.99",
     amountCents: 999,
-    blurb: "Printable one-sitting review of Texas law themes that sink first-timers.",
+    blurb:
+      "One-sitting printable review of Texas law themes — open in browser, print or save as PDF from your device.",
     features: [
       "Texas regulator & licensing checklist",
       "Guaranty association / CE / replacement reminders",
       "High-yield ethics & unfair trade snaps",
-      "Printable page — study offline",
+      "Print from browser — no app required",
     ],
     creemEnvKey: "CREEM_PRODUCT_PDF",
   },

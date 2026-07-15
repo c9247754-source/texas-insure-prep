@@ -4,6 +4,7 @@ import {
   LEARN_RELATED,
   type LearnFaq,
 } from "./learn-extra";
+import { LEARN_LONGFORM } from "./learn-longform";
 
 export type LearnArticle = {
   slug: string;
@@ -204,7 +205,8 @@ export function getLearnArticle(slug: string): LearnArticle | undefined {
 
 export function getLearnArticleBody(article: LearnArticle): string[] {
   const extra = LEARN_BODY_EXTRA[article.slug] ?? [];
-  return [...article.body, ...extra];
+  const longform = LEARN_LONGFORM[article.slug] ?? [];
+  return [...article.body, ...extra, ...longform];
 }
 
 export function getLearnArticleFaqs(slug: string): LearnFaq[] {

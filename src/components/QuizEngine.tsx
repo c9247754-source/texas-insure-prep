@@ -246,9 +246,12 @@ export function QuizEngine({
 
         <CourseBanner />
 
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link href={`/practice/${examSlug}`} className="btn-primary">
             Practice again
+          </Link>
+          <Link href={`/practice/${examSlug}/missed`} className="btn-secondary">
+            Retry missed questions
           </Link>
           <Link href={`/mock/${examSlug}`} className="btn-secondary">
             New mock exam

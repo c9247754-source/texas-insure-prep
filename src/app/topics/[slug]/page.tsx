@@ -3,17 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CourseBanner } from "@/components/QuizEngine";
 import { getExam, getQuestionsByDomain } from "@/data/catalog";
-import { DOMAIN_LABELS, type QuestionDomain } from "@/data/types";
+import { DOMAIN_LABELS, domainsForExam, type QuestionDomain } from "@/data/types";
 
 type Props = { params: Promise<{ slug: string }> };
-
-const domains: QuestionDomain[] = [
-  "life",
-  "health",
-  "annuity",
-  "ethics",
-  "texas-law",
-];
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -30,6 +22,8 @@ export default async function TopicsPage({ params }: Props) {
   const exam = getExam(slug);
   if (!exam) notFound();
 
+const domains = domainsForExam(slug);
+
   return (
     <div className="mx-auto max-w-3xl">
       <p className="eyebrow">Study map</p>
@@ -37,6 +31,15 @@ export default async function TopicsPage({ params }: Props) {
         {exam.shortTitle} topics
       </h1>
       <p className="mt-3 text-[var(--ink-muted)]">{exam.outlineNote}</p>
+
+      <div className="mt-6">
+        <Link
+          href={`/practice/${slug}/missed`}
+          className="text-sm text-[var(--navy)] underline underline-offset-2"
+        >
+          Retry missed questions (saved on this device)
+        </Link>
+      </div>
 
       <div className="mt-10 grid gap-4">
         {domains.map((domain) => {

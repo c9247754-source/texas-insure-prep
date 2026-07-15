@@ -52,6 +52,7 @@ export function recordAnswer(
   }
 
   saveProgress(progress);
+  window.dispatchEvent(new Event("tip-progress"));
 }
 
 export function getWrongCount(): number {

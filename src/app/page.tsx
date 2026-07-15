@@ -85,8 +85,8 @@ export default function HomePage() {
             href: `/mock/${primary.slug}`,
           },
           {
-            title: "Texas law PDF",
-            body: "$9.99 printable cheat sheet for the state section that sinks first-timers.",
+            title: "Texas law sheet",
+            body: "$9.99 printable cheat sheet — print or save as PDF from your browser.",
             href: `/guide/texas-law`,
           },
         ].map((card) => (
